@@ -18,24 +18,9 @@ class _KlimaticState extends State<Klimatic> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.blue[50],
-      appBar: AppBar(
-        centerTitle: true,
-        title: Text(
-          'Climate',
-        ),
-        backgroundColor: Colors.blue[900],
-      ),
+      backgroundColor: Color.fromRGBO(0, 130, 141, 1),
       body: Stack(
         children: [
-          Container(
-            alignment: Alignment.topCenter,
-            margin: EdgeInsets.fromLTRB(0, 10.9, 20.8, 0),
-            child: Text(
-              'Karachi',
-              style: city_style(),
-            ),
-          ),
           Container(
             alignment: Alignment.center,
             child: updateTempWidget('karachi'),
@@ -47,7 +32,7 @@ class _KlimaticState extends State<Klimatic> {
 
   TextStyle city_style() {
     return TextStyle(
-      color: Colors.pink,
+      color: Color.fromRGBO(0, 130, 141, 1),
       fontSize: 50,
       fontStyle: FontStyle.italic,
     );
@@ -55,7 +40,7 @@ class _KlimaticState extends State<Klimatic> {
 
   TextStyle tempStyle() {
     return TextStyle(
-      color: Colors.pink,
+      color: Color.fromRGBO(0, 130, 141, 1),
       fontStyle: FontStyle.normal,
       fontSize: 50,
       fontWeight: FontWeight.w900,
@@ -77,104 +62,140 @@ class _KlimaticState extends State<Klimatic> {
           //here we get all data from json and setup widgets
           if (snapshot.hasData) {
             Map content = snapshot.data;
-            return Container(
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.start,
-                children: [
-                  Padding(
-                    padding: EdgeInsets.all(50),
-                  ),
-                  ListTile(
-                    leading: Text(
-                      'Actual Temperature',
+            return Padding(
+              padding: const EdgeInsets.only(top: 30),
+              child: Center(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    Icon(Icons.location_pin, size: 70, color: Colors.white),
+                    Text(
+                      'Karachi',
                       style: TextStyle(
-                        fontStyle: FontStyle.normal,
-                        fontWeight: FontWeight.w500,
-                        fontSize: 20,
-                        color: Colors.pink,
-                      ),
+                          color: Colors.white,
+                          fontSize: 35,
+                          fontWeight: FontWeight.w500),
                     ),
-                    title: Center(
-                      child: Text(
-                        content["main"]["temp"].toString() + '\u00B0' + 'C',
-                        style: TextStyle(
-                          fontStyle: FontStyle.normal,
-                          fontWeight: FontWeight.w500,
-                          fontSize: 40,
-                          color: Colors.pink,
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Container(
+                        height: 400,
+                        width: 400,
+                        decoration: BoxDecoration(
+                          color: Colors.white,
+                          borderRadius: BorderRadius.circular(15),
+                        ),
+                        child: Column(
+                          children: [
+                            ListTile(
+                              leading: Text(
+                                'Actual Temp',
+                                style: TextStyle(
+                                  fontStyle: FontStyle.normal,
+                                  fontWeight: FontWeight.w500,
+                                  fontSize: 20,
+                                ),
+                              ),
+                              title: Center(
+                                child: Text(
+                                  content["main"]["temp"].toString() +
+                                      '\u00B0' +
+                                      'C',
+                                  style: TextStyle(
+                                    fontStyle: FontStyle.normal,
+                                    fontWeight: FontWeight.w500,
+                                    fontSize: 20,
+                                    color: Color.fromRGBO(0, 130, 141, 1),
+                                  ),
+                                ),
+                              ),
+                            ),
+                            Padding(
+                              padding: EdgeInsets.only(
+                                top: 10,
+                              ),
+                            ),
+                            ListTile(
+                              leading: Text(
+                                'Feels Like',
+                                style: TextStyle(
+                                  fontStyle: FontStyle.normal,
+                                  fontWeight: FontWeight.w500,
+                                  fontSize: 20,
+                                ),
+                              ),
+                              title: Center(
+                                child: Text(
+                                  content["main"]["feels_like"].toString() +
+                                      '\u00B0' +
+                                      'C',
+                                  style: TextStyle(
+                                    fontStyle: FontStyle.normal,
+                                    fontWeight: FontWeight.w500,
+                                    fontSize: 20,
+                                    color: Color.fromRGBO(0, 130, 141, 1),
+                                  ),
+                                ),
+                              ),
+                            ),
+                            Padding(
+                              padding: EdgeInsets.only(
+                                top: 10,
+                              ),
+                            ),
+                            ListTile(
+                              leading: Text(
+                                'Humidity',
+                                style: TextStyle(
+                                  fontStyle: FontStyle.normal,
+                                  fontWeight: FontWeight.w500,
+                                  fontSize: 20,
+                                ),
+                              ),
+                              title: Center(
+                                child: Text(
+                                  content["main"]["humidity"].toString() + '%',
+                                  style: TextStyle(
+                                    fontStyle: FontStyle.normal,
+                                    fontWeight: FontWeight.w500,
+                                    fontSize: 20,
+                                    color: Color.fromRGBO(0, 130, 141, 1),
+                                  ),
+                                ),
+                              ),
+                            ),
+                            Padding(
+                              padding: EdgeInsets.only(
+                                top: 10,
+                              ),
+                            ),
+                            ListTile(
+                              leading: Text(
+                                'Wind Speed',
+                                style: TextStyle(
+                                  fontStyle: FontStyle.normal,
+                                  fontWeight: FontWeight.w500,
+                                  fontSize: 20,
+                                ),
+                              ),
+                              title: Center(
+                                child: Text(
+                                  content["wind"]["speed"].toString() + 'Km/h',
+                                  style: TextStyle(
+                                    fontStyle: FontStyle.normal,
+                                    fontWeight: FontWeight.w500,
+                                    fontSize: 20,
+                                    color: Color.fromRGBO(0, 130, 141, 1),
+                                  ),
+                                ),
+                              ),
+                            ),
+                          ],
                         ),
                       ),
-                    ),
-                  ),
-                  ListTile(
-                    leading: Text(
-                      'Feels like',
-                      style: TextStyle(
-                        fontStyle: FontStyle.normal,
-                        fontWeight: FontWeight.w500,
-                        fontSize: 30,
-                        color: Colors.pink,
-                      ),
-                    ),
-                    title: Center(
-                      child: Text(
-                        content["main"]["feels_like"].toString() +
-                            '\u00B0' +
-                            'C',
-                        style: TextStyle(
-                          fontStyle: FontStyle.normal,
-                          fontWeight: FontWeight.w500,
-                          fontSize: 40,
-                          color: Colors.pink,
-                        ),
-                      ),
-                    ),
-                  ),
-                  ListTile(
-                    leading: Text(
-                      'Humidity',
-                      style: TextStyle(
-                        fontStyle: FontStyle.normal,
-                        fontWeight: FontWeight.w500,
-                        fontSize: 30,
-                        color: Colors.pink,
-                      ),
-                    ),
-                    title: Center(
-                      child: Text(
-                        content["main"]["humidity"].toString() + '\u00B0' + 'C',
-                        style: TextStyle(
-                          fontStyle: FontStyle.normal,
-                          fontWeight: FontWeight.w500,
-                          fontSize: 40,
-                          color: Colors.pink,
-                        ),
-                      ),
-                    ),
-                  ),
-                  ListTile(
-                    leading: Text(
-                      'Wind Speed',
-                      style: TextStyle(
-                        fontStyle: FontStyle.normal,
-                        fontWeight: FontWeight.w500,
-                        fontSize: 30,
-                        color: Colors.pink,
-                      ),
-                    ),
-                    title: Center(
-                      child: Text(
-                        content["wind"]["speed"].toString() + 'Km/h',
-                        style: TextStyle(
-                          fontStyle: FontStyle.normal,
-                          fontWeight: FontWeight.w500,
-                          fontSize: 30,
-                          color: Colors.pink,
-                        ),
-                      ),
-                    ),
-                  ),
-                ],
+                    )
+                  ],
+                ),
               ),
             );
           } else {
